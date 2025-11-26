@@ -66,47 +66,26 @@ if (raccoon) {
     function scurryAround() {
         const vw = window.innerWidth;
         const vh = window.innerHeight;
-        const raccoonW = 50;
-        const raccoonH = 32;
+        const raccoonW = 80;
+        const raccoonH = 60;
         
-        // Define the path around the border
-        const path = [
-            // Start bottom left, go right
-            { x: -raccoonW, y: vh - margin - raccoonH, flip: false },
-            { x: vw + raccoonW, y: vh - margin - raccoonH, flip: false },
-        ];
+        // Randomly choose top or bottom edge, always left to right
+        const edge = Math.floor(Math.random() * 2);
+        let startX, startY, endX, endY;
         
-        // Randomly choose which edge to run along
-        const edge = Math.floor(Math.random() * 4);
-        let startX, startY, endX, endY, flip;
-        
-        switch(edge) {
-            case 0: // Bottom: left to right
-                startX = -raccoonW; startY = vh - margin - raccoonH;
-                endX = vw + raccoonW; endY = vh - margin - raccoonH;
-                flip = false;
-                break;
-            case 1: // Bottom: right to left
-                startX = vw + raccoonW; startY = vh - margin - raccoonH;
-                endX = -raccoonW; endY = vh - margin - raccoonH;
-                flip = true;
-                break;
-            case 2: // Top: left to right
-                startX = -raccoonW; startY = margin;
-                endX = vw + raccoonW; endY = margin;
-                flip = false;
-                break;
-            case 3: // Top: right to left
-                startX = vw + raccoonW; startY = margin;
-                endX = -raccoonW; endY = margin;
-                flip = true;
-                break;
+        if (edge === 0) {
+            // Bottom: left to right
+            startX = -raccoonW; startY = vh - margin - raccoonH;
+            endX = vw + raccoonW; endY = vh - margin - raccoonH;
+        } else {
+            // Top: left to right
+            startX = -raccoonW; startY = margin;
+            endX = vw + raccoonW; endY = margin;
         }
         
         // Set initial position
         raccoon.style.left = startX + 'px';
         raccoon.style.top = startY + 'px';
-        raccoon.classList.toggle('flip', flip);
         
         // Show and start running
         raccoon.classList.add('active', 'running');
@@ -146,7 +125,7 @@ if (raccoon) {
         setTimeout(scurryAround, delay);
     }
     
-    // First appearance after 5-10 seconds
-    setTimeout(scurryAround, 5000 + Math.random() * 5000);
+    // First appearance right away
+    scurryAround();
 }
 
