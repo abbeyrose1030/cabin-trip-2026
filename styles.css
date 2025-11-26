@@ -526,6 +526,42 @@ body.fade-out {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   RACCOON
+   ═══════════════════════════════════════════════════════════ */
+
+.raccoon {
+    position: fixed;
+    width: 80px;
+    height: auto;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.raccoon.active {
+    opacity: 1;
+}
+
+.raccoon img {
+    width: 100%;
+    height: auto;
+}
+
+.raccoon.running {
+    animation: waddle 0.15s ease-in-out infinite;
+}
+
+@keyframes waddle {
+    0%, 100% { transform: rotate(-3deg) translateY(0); }
+    50% { transform: rotate(3deg) translateY(-2px); }
+}
+
+.raccoon.flip {
+    transform: scaleX(-1);
+}
+
+/* ═══════════════════════════════════════════════════════════
    SELECTION & SCROLLBAR
    ═══════════════════════════════════════════════════════════ */
 
