@@ -59,18 +59,30 @@
                 <p class="section-text">Cost breakdown and payment details.</p>
             </section>
 
-            <section class="info-section">
+            <section class="info-section chat-section">
                 <h2 class="section-title">
-                    <span class="section-icon">📝</span>
-                    Notes
+                    <span class="section-icon">💬</span>
+                    Chat
                 </h2>
-                <p class="section-text">Any other important information goes here.</p>
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <p class="chat-placeholder">Loading messages...</p>
+                    </div>
+                    <form class="chat-form" id="chatForm">
+                        <input type="text" id="chatName" class="chat-input chat-name" placeholder="Your name" maxlength="20" required>
+                        <input type="text" id="chatMessage" class="chat-input chat-text" placeholder="Type a message..." maxlength="500" required>
+                        <button type="submit" class="chat-send">Send</button>
+                    </form>
+                </div>
             </section>
         </div>
 
     </main>
 
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
     <script src="script.js"></script>
+    <script src="chat.js"></script>
 </body>
 </html>
 
