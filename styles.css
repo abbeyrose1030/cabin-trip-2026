@@ -299,6 +299,13 @@ body {
     top: 0.35rem;
 }
 
+.packing-note {
+    font-size: 0.85rem;
+    color: var(--color-cream-dim);
+    opacity: 0.7;
+    font-style: italic;
+}
+
 /* ═══════════════════════════════════════════════════════════
    CHAT
    ═══════════════════════════════════════════════════════════ */
