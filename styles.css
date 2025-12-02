@@ -984,99 +984,62 @@ body.fade-out {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   ACTIVITY GENERATOR
+   CARPOOL COORDINATOR
    ═══════════════════════════════════════════════════════════ */
 
-.trip-generator-section {
+.carpool-section {
     text-align: center;
 }
 
-.activity-button {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    padding: 1rem 2rem;
-    margin: 1.5rem 0;
-    border: none;
-    border-radius: 8px;
-    background: var(--color-amber);
-    color: var(--color-bg);
-    cursor: pointer;
-    transition: all 0.3s var(--ease-smooth);
-    box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
-}
-
-.activity-button:hover {
-    background: var(--color-amber-glow);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(212, 165, 116, 0.4);
-}
-
-.activity-button:active {
-    transform: translateY(0);
-}
-
-.activity-button.generating {
-    animation: buttonPulse 0.3s ease-in-out;
-}
-
-@keyframes buttonPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(0.95); }
-}
-
-.activity-display {
-    min-height: 80px;
-    display: flex;
-    align-items: center;
+.carpool-title {
     justify-content: center;
-    transition: opacity 0.3s ease;
 }
 
-.activity-result {
+.carpool-placeholder {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    padding: 1.5rem;
-    background: rgba(212, 165, 116, 0.1);
-    border: 2px solid var(--color-amber);
-    border-radius: 12px;
-    animation: activityAppear 0.4s var(--ease-bounce);
+    justify-content: center;
+    padding: 3rem 2rem;
+    min-height: 200px;
 }
 
-@keyframes activityAppear {
-    0% {
-        transform: scale(0.8);
-        opacity: 0;
+.car-graphic {
+    width: 200px;
+    height: 100px;
+    color: var(--color-amber);
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 15px rgba(212, 165, 116, 0.2));
+    animation: carFloat 3s ease-in-out infinite;
+}
+
+@keyframes carFloat {
+    0%, 100% {
+        transform: translateY(0);
     }
-    100% {
-        transform: scale(1);
-        opacity: 1;
+    50% {
+        transform: translateY(-10px);
     }
 }
 
-.activity-emoji {
-    font-size: 3rem;
-    line-height: 1;
-}
-
-.activity-text {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    color: var(--color-cream);
+.carpool-message {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--color-cream-dim);
+    opacity: 0.8;
     text-align: center;
-    font-weight: 600;
+    max-width: 300px;
 }
 
 @media (max-width: 600px) {
-    .activity-emoji {
-        font-size: 2.5rem;
+    .car-graphic {
+        width: 160px;
+        height: 80px;
     }
     
-    .activity-text {
-        font-size: 1.1rem;
+    .carpool-message {
+        font-size: 1rem;
     }
 }
 
@@ -1147,4 +1110,5 @@ body.fade-out {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color-amber);
 }
+
 

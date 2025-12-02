@@ -67,15 +67,40 @@
                 </div>
             </section>
 
-            <!-- Random Trip Generator -->
-            <section class="info-section trip-generator-section">
-                <h2 class="section-title">
-                    <span class="section-icon">🎲</span>
-                    Random Activity Generator
+            <!-- Carpool Coordinator -->
+            <section class="info-section carpool-section">
+                <h2 class="section-title carpool-title">
+                    Carpool Coordinator
                 </h2>
-                <p class="section-text">Not sure what to do? Click the button for a random suggestion!</p>
-                <button class="activity-button" id="activityButton">Generate Activity</button>
-                <div class="activity-display" id="activityDisplay"></div>
+                <div class="carpool-placeholder">
+                    <svg class="car-graphic" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Car body -->
+                        <rect x="20" y="50" width="160" height="35" rx="8" fill="none" stroke="currentColor" stroke-width="3"/>
+                        
+                        <!-- Car roof -->
+                        <path d="M 50 50 L 60 30 L 140 30 L 150 50" fill="none" stroke="currentColor" stroke-width="3"/>
+                        
+                        <!-- Windows -->
+                        <line x1="60" y1="33" x2="60" y2="50" stroke="currentColor" stroke-width="3"/>
+                        <line x1="100" y1="30" x2="100" y2="50" stroke="currentColor" stroke-width="3"/>
+                        <line x1="140" y1="33" x2="140" y2="50" stroke="currentColor" stroke-width="3"/>
+                        
+                        <!-- Wheels -->
+                        <circle cx="55" cy="85" r="12" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <circle cx="145" cy="85" r="12" fill="none" stroke="currentColor" stroke-width="3"/>
+                        
+                        <!-- Wheel details -->
+                        <circle cx="55" cy="85" r="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="145" cy="85" r="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                        
+                        <!-- Headlight -->
+                        <circle cx="175" cy="65" r="3" fill="currentColor"/>
+                        
+                        <!-- Door handle -->
+                        <line x1="110" y1="60" x2="120" y2="60" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <p class="carpool-message">Feature will be added closer to the date</p>
+                </div>
             </section>
         </div>
     </main>

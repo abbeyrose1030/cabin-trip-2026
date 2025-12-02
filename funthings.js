@@ -147,62 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════
-   RANDOM ACTIVITY GENERATOR
+   CARPOOL COORDINATOR
    ═══════════════════════════════════════════════════════════ */
 
-const activities = [
-    { emoji: '🎲', text: 'Board Game' },
-    { emoji: '🍿', text: 'Movie marathon' },
-    { emoji: '🏔️', text: 'Go for a scenic hike' },
-    { emoji: '🌃', text: 'Explore downtown Gatlinburg' },
-    { emoji: '☕', text: 'Hunt down a coffee shop'},
-    { emoji: '📸', text: 'Photo shoot in nature' },
-    { emoji: '🧩', text: 'Work on a giant puzzle together' },
-    { emoji: '🍳', text: 'Cook a big group breakfast' },
-    { emoji: '🌌', text: 'Stargaze' },
-    { emoji: '🎨', text: 'Craft time' },
-    { emoji: '🔥', text: 'Build a campfire' },
-    { emoji: '🛁', text: 'Hot tub' },
-    { emoji: '🍰', text: 'Bake Something' },
-    { emoji: '🌲', text: 'Nature walk' },
-    { emoji: '🧘', text: 'Morning yoga or stretching' }
-];
-
-let currentActivity = null;
-
-function generateActivity() {
-    const activityButton = document.getElementById('activityButton');
-    const activityDisplay = document.getElementById('activityDisplay');
-    
-    // Animation effect
-    activityButton.classList.add('generating');
-    activityDisplay.style.opacity = '0';
-    
-    setTimeout(() => {
-        // Get random activity (different from current)
-        let newActivity;
-        do {
-            newActivity = activities[Math.floor(Math.random() * activities.length)];
-        } while (newActivity === currentActivity && activities.length > 1);
-        
-        currentActivity = newActivity;
-        
-        activityDisplay.innerHTML = `
-            <div class="activity-result">
-                <span class="activity-emoji">${newActivity.emoji}</span>
-                <span class="activity-text">${newActivity.text}</span>
-            </div>
-        `;
-        
-        activityDisplay.style.opacity = '1';
-        activityButton.classList.remove('generating');
-    }, 300);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const activityButton = document.getElementById('activityButton');
-    if (activityButton) {
-        activityButton.addEventListener('click', generateActivity);
-    }
-});
+// Feature coming soon - placeholder for now
 
