@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CABIN TRIP 2026</title>
+    <title>GUEST LIST — CABIN TRIP 2026</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,22 +11,33 @@
 </head>
 <body>
     <nav class="nav">
-        <a href="index.html" class="nav-link active">HOME</a>
+        <a href="index.html" class="nav-link">HOME</a>
         <a href="info.html" class="nav-link">INFO</a>
-        <a href="guestlist.html" class="nav-link">GUEST LIST</a>
+        <a href="guestlist.html" class="nav-link active">GUEST LIST</a>
     </nav>
 
     <div class="raccoon" id="raccoon">
         <img src="raccoon.png" alt="raccoon">
     </div>
 
-    <main class="home">
+    <main class="info-page">
         <div class="background-pattern"></div>
         
-        <img src="font2.png" alt="" class="bottom-image">
+        <div class="info-content">
+            <h1 class="info-title">Guest List</h1>
+            
+            <div class="guest-list-container">
+                <ul class="guest-list" id="guestList">
+                    <!-- Guest list items will be generated here -->
+                </ul>
+            </div>
+        </div>
     </main>
 
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
     <script src="script.js"></script>
+    <script src="guestlist.js"></script>
 </body>
 </html>
 

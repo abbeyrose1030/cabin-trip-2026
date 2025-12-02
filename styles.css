@@ -469,6 +469,167 @@ body {
     flex-shrink: 0;
 }
 
+/* ═══════════════════════════════════════════════════════════
+   GUEST LIST
+   ═══════════════════════════════════════════════════════════ */
+
+.guest-list-container {
+    background: rgba(245, 235, 224, 0.03);
+    border: 1px solid rgba(245, 235, 224, 0.08);
+    border-radius: 12px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.guest-list-container .info-title {
+    text-align: center;
+}
+
+.guest-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.guest-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid rgba(245, 235, 224, 0.05);
+    transition: all 0.3s var(--ease-smooth);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.5s var(--ease-smooth) both;
+}
+
+.guest-item:nth-child(1) { animation-delay: 0.05s; }
+.guest-item:nth-child(2) { animation-delay: 0.1s; }
+.guest-item:nth-child(3) { animation-delay: 0.15s; }
+.guest-item:nth-child(4) { animation-delay: 0.2s; }
+.guest-item:nth-child(5) { animation-delay: 0.25s; }
+.guest-item:nth-child(6) { animation-delay: 0.3s; }
+.guest-item:nth-child(7) { animation-delay: 0.35s; }
+.guest-item:nth-child(8) { animation-delay: 0.4s; }
+.guest-item:nth-child(9) { animation-delay: 0.45s; }
+.guest-item:nth-child(10) { animation-delay: 0.5s; }
+.guest-item:nth-child(11) { animation-delay: 0.55s; }
+.guest-item:nth-child(12) { animation-delay: 0.6s; }
+.guest-item:nth-child(13) { animation-delay: 0.65s; }
+.guest-item:nth-child(14) { animation-delay: 0.7s; }
+.guest-item:nth-child(15) { animation-delay: 0.75s; }
+.guest-item:nth-child(16) { animation-delay: 0.8s; }
+.guest-item:nth-child(17) { animation-delay: 0.85s; }
+.guest-item:nth-child(18) { animation-delay: 0.9s; }
+.guest-item:nth-child(19) { animation-delay: 0.95s; }
+.guest-item:nth-child(20) { animation-delay: 1s; }
+
+.guest-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--color-amber);
+    transform: scaleY(0);
+    transition: transform 0.3s var(--ease-smooth);
+}
+
+.guest-item:hover {
+    border-color: rgba(212, 165, 116, 0.3);
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(212, 165, 116, 0.15);
+}
+
+.guest-item:hover::before {
+    transform: scaleY(1);
+}
+
+.guest-name-display {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-cream);
+    text-transform: capitalize;
+    min-width: 90px;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.feeling-label {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-amber);
+    font-style: italic;
+    white-space: nowrap;
+    opacity: 0.95;
+    font-weight: 500;
+}
+
+.feeling-select {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid rgba(245, 235, 224, 0.2);
+    border-radius: 6px;
+    background: rgba(212, 165, 116, 0.1);
+    color: var(--color-cream);
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 140px;
+    font-weight: 500;
+}
+
+.feeling-select:hover {
+    border-color: var(--color-amber);
+    background: rgba(212, 165, 116, 0.15);
+    transform: scale(1.02);
+}
+
+.feeling-select:focus {
+    border-color: var(--color-amber);
+    background: rgba(212, 165, 116, 0.2);
+    box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.2);
+}
+
+.feeling-select option {
+    background: var(--color-bg);
+    color: var(--color-cream);
+    padding: 0.5rem;
+}
+
+@media (max-width: 600px) {
+    .guest-list-container {
+        padding: 1.5rem;
+    }
+    
+    .guest-item {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .guest-name-display {
+        width: 100%;
+    }
+    
+    .feeling-label {
+        margin-left: 0;
+    }
+    
+    .feeling-select {
+        width: 100%;
+    }
+}
+
 @media (max-width: 500px) {
     .chat-name {
         width: 100%;
