@@ -778,6 +778,351 @@ body.fade-out {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   COUNTDOWN TIMER
+   ═══════════════════════════════════════════════════════════ */
+
+.countdown-section {
+    text-align: center;
+}
+
+.countdown-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.countdown-value {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--color-amber);
+    text-shadow: 0 0 20px rgba(212, 165, 116, 0.3);
+    line-height: 1;
+}
+
+.countdown-label {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--color-cream-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.countdown-separator {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--color-cream-dim);
+    opacity: 0.5;
+    margin: 0 0.25rem;
+}
+
+.countdown-finished {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--color-amber);
+    text-align: center;
+    margin: 2rem 0;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@media (max-width: 600px) {
+    .countdown-value {
+        font-size: 2rem;
+    }
+    
+    .countdown-separator {
+        font-size: 1.5rem;
+    }
+    
+    .countdown-label {
+        font-size: 0.7rem;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   WEATHER WIDGET
+   ═══════════════════════════════════════════════════════════ */
+
+.weather-section {
+    background: rgba(245, 235, 224, 0.05);
+}
+
+.weather-widget {
+    margin-top: 1rem;
+}
+
+.weather-loading,
+.weather-error {
+    text-align: center;
+    color: var(--color-cream-dim);
+    font-style: italic;
+    padding: 2rem;
+}
+
+.weather-current {
+    text-align: center;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(245, 235, 224, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.weather-temp-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.weather-icon-large {
+    font-size: 4rem;
+    line-height: 1;
+}
+
+.weather-temp-large {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--color-amber);
+    line-height: 1;
+}
+
+.weather-location {
+    font-size: 1rem;
+    color: var(--color-cream);
+    margin-bottom: 0.25rem;
+}
+
+.weather-wind {
+    font-size: 0.9rem;
+    color: var(--color-cream-dim);
+}
+
+.weather-forecast-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--color-amber);
+    text-align: center;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.weather-forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 1rem;
+}
+
+.weather-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 0.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid rgba(245, 235, 224, 0.05);
+    transition: all 0.3s var(--ease-smooth);
+}
+
+.weather-day:hover {
+    transform: translateY(-3px);
+    border-color: rgba(212, 165, 116, 0.2);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.weather-day-name {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-cream);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.weather-day-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.weather-day-temp {
+    font-size: 0.9rem;
+    color: var(--color-cream);
+    font-weight: 600;
+}
+
+.weather-day-precip {
+    font-size: 0.75rem;
+    color: var(--color-cream-dim);
+}
+
+@media (max-width: 600px) {
+    .weather-temp-large,
+    .weather-icon-large {
+        font-size: 3rem;
+    }
+    
+    .weather-forecast-grid {
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+        gap: 0.75rem;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ACTIVITY GENERATOR
+   ═══════════════════════════════════════════════════════════ */
+
+.trip-generator-section {
+    text-align: center;
+}
+
+.activity-button {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 1rem 2rem;
+    margin: 1.5rem 0;
+    border: none;
+    border-radius: 8px;
+    background: var(--color-amber);
+    color: var(--color-bg);
+    cursor: pointer;
+    transition: all 0.3s var(--ease-smooth);
+    box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
+}
+
+.activity-button:hover {
+    background: var(--color-amber-glow);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 165, 116, 0.4);
+}
+
+.activity-button:active {
+    transform: translateY(0);
+}
+
+.activity-button.generating {
+    animation: buttonPulse 0.3s ease-in-out;
+}
+
+@keyframes buttonPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+}
+
+.activity-display {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+.activity-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(212, 165, 116, 0.1);
+    border: 2px solid var(--color-amber);
+    border-radius: 12px;
+    animation: activityAppear 0.4s var(--ease-bounce);
+}
+
+@keyframes activityAppear {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.activity-emoji {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.activity-text {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--color-cream);
+    text-align: center;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .activity-emoji {
+        font-size: 2.5rem;
+    }
+    
+    .activity-text {
+        font-size: 1.1rem;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SNOWFALL
+   ═══════════════════════════════════════════════════════════ */
+
+.snowflake {
+    position: fixed;
+    top: -10px;
+    z-index: 9998;
+    user-select: none;
+    pointer-events: none;
+    color: #fff;
+    font-size: 1em;
+    opacity: 0.8;
+    animation: snowfall linear infinite;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* Different snowflake sizes for variety */
+.snowflake-sm {
+    font-size: 0.7em;
+    opacity: 0.6;
+}
+
+.snowflake-md {
+    font-size: 1em;
+    opacity: 0.8;
+}
+
+.snowflake-lg {
+    font-size: 1.3em;
+    opacity: 0.9;
+}
+
+/* ═══════════════════════════════════════════════════════════
    SELECTION & SCROLLBAR
    ═══════════════════════════════════════════════════════════ */
 

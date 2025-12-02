@@ -129,3 +129,61 @@ if (raccoon) {
     scurryAround();
 }
 
+/* ═══════════════════════════════════════════════════════════
+   SNOWFALL
+   ═══════════════════════════════════════════════════════════ */
+
+function createSnowfall() {
+    // Adjust number of snowflakes based on screen size for performance
+    const isMobile = window.innerWidth <= 768;
+    const snowflakeCount = isMobile ? 42 : 70;
+    
+    const snowflakeChars = ['❄', '❅', '❆'];
+    const sizes = ['snowflake-sm', 'snowflake-md', 'snowflake-lg'];
+    
+    for (let i = 0; i < snowflakeCount; i++) {
+        createSnowflake();
+    }
+    
+    function createSnowflake() {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+        
+        // Random snowflake character
+        snowflake.textContent = snowflakeChars[Math.floor(Math.random() * snowflakeChars.length)];
+        
+        // Random size
+        const size = sizes[Math.floor(Math.random() * sizes.length)];
+        snowflake.classList.add(size);
+        
+        // Random horizontal position
+        snowflake.style.left = Math.random() * 100 + '%';
+        
+        // Random animation duration (slower = more graceful)
+        const duration = (Math.random() * 10 + 10) + 's';
+        snowflake.style.animationDuration = duration;
+        
+        // Random delay for staggered start
+        const delay = Math.random() * 10 + 's';
+        snowflake.style.animationDelay = delay;
+        
+        // Add slight horizontal drift
+        const drift = (Math.random() - 0.5) * 100;
+        snowflake.style.setProperty('--drift', drift + 'px');
+        
+        document.body.appendChild(snowflake);
+        
+        // Remove and recreate after animation completes for continuous effect
+        const totalDuration = parseFloat(duration) + parseFloat(delay);
+        setTimeout(() => {
+            snowflake.remove();
+            createSnowflake();
+        }, totalDuration * 1000);
+    }
+}
+
+// Initialize snowfall on page load
+document.addEventListener('DOMContentLoaded', () => {
+    createSnowfall();
+});
+

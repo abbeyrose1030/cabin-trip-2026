@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUN THINGS — CABIN TRIP 2026</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-link">HOME</a>
+        <a href="info.html" class="nav-link">INFO</a>
+        <a href="funthings.html" class="nav-link active">FUN THINGS</a>
+        <!-- <a href="guestlist.html" class="nav-link">GUEST LIST</a> -->
+    </nav>
+
+    <div class="raccoon" id="raccoon">
+        <img src="raccoon.png" alt="raccoon">
+    </div>
+
+    <main class="info-page">
+        <div class="background-pattern"></div>
+        
+        <div class="info-content">
+            <h1 class="info-title">Fun Things</h1>
+            
+            <!-- Countdown Section -->
+            <section class="info-section countdown-section">
+                <h2 class="section-title">
+                    <span class="section-icon">⏰</span>
+                    Countdown to Cabin Trip
+                </h2>
+                <div class="countdown-display" id="countdownDisplay">
+                    <div class="countdown-unit">
+                        <span class="countdown-value" id="days">00</span>
+                        <span class="countdown-label">days</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-unit">
+                        <span class="countdown-value" id="hours">00</span>
+                        <span class="countdown-label">hours</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-unit">
+                        <span class="countdown-value" id="minutes">00</span>
+                        <span class="countdown-label">minutes</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-unit">
+                        <span class="countdown-value" id="seconds">00</span>
+                        <span class="countdown-label">seconds</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Weather Section -->
+            <section class="info-section weather-section">
+                <h2 class="section-title">
+                    <span class="section-icon">🌤️</span>
+                    Gatlinburg Weather
+                </h2>
+                <div class="weather-widget" id="weatherWidget">
+                    <p class="weather-loading">Loading weather forecast...</p>
+                </div>
+            </section>
+
+            <!-- Random Trip Generator -->
+            <section class="info-section trip-generator-section">
+                <h2 class="section-title">
+                    <span class="section-icon">🎲</span>
+                    Random Activity Generator
+                </h2>
+                <p class="section-text">Not sure what to do? Click the button for a random suggestion!</p>
+                <button class="activity-button" id="activityButton">Generate Activity</button>
+                <div class="activity-display" id="activityDisplay"></div>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <script src="script.js"></script>
+    <script src="funthings.js"></script>
+</body>
+</html>
+
