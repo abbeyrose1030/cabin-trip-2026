@@ -276,6 +276,15 @@ body {
     font-weight: 300;
 }
 
+.section-text-highlight {
+    font-size: 0.95rem;
+    background: rgba(212, 165, 116, 0.15);
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border-left: 3px solid var(--color-amber);
+    margin-top: 0.75rem;
+}
+
 .packing-list {
     list-style: none;
     display: grid;
