@@ -758,7 +758,7 @@ body.fade-out {
     position: fixed;
     width: 80px;
     height: auto;
-    z-index: 9999;
+    z-index: 50;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -1274,7 +1274,7 @@ body.fade-out {
 
 @media (max-width: 600px) {
     .campfire-toggle-container {
-        top: 1rem;
+        top: 4.5rem;
         right: 1rem;
         padding: 0.4rem 0.75rem;
     }
