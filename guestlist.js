@@ -32,10 +32,10 @@ const emotions = [
 
 // Guest list with fixed names (shuffled)
 const guestNames = [
-    'mccall', 'jenny', 'tyler', 'erika', 'dalton',
-    'abbey', 'gavin', 'mikey', 'julia', 'maddie',
-    'alex', 'paige', 'emily', 'jamie', 'stevie',
-    'abby', 'kate', 'mike', 'dara', 'dalton'
+    'stevie', 'dalton', 'maddie', 'abby', 'gavin',
+    'tyler', 'emily', 'mccall', 'kate', 'julia',
+    'jenny', 'mikey', 'abbey', 'erika', 'alex',
+    'paige', 'jamie', 'mike', 'dara', 'dalton c.'
 ];
 
 const defaultGuests = guestNames.map((name, i) => ({
