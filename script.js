@@ -187,3 +187,32 @@ document.addEventListener('DOMContentLoaded', () => {
     createSnowfall();
 });
 
+/* ═══════════════════════════════════════════════════════════
+   CAMPFIRE MODE
+   ═══════════════════════════════════════════════════════════ */
+
+document.addEventListener('DOMContentLoaded', () => {
+    const campfireToggle = document.getElementById('campfireToggle');
+    const campfireGlow = document.getElementById('campfireGlow');
+    
+    if (campfireToggle && campfireGlow) {
+        // Check if campfire mode was previously enabled
+        const campfireEnabled = localStorage.getItem('campfireMode') === 'true';
+        if (campfireEnabled) {
+            campfireToggle.checked = true;
+            campfireGlow.classList.add('active');
+        }
+        
+        // Toggle campfire mode
+        campfireToggle.addEventListener('change', () => {
+            if (campfireToggle.checked) {
+                campfireGlow.classList.add('active');
+                localStorage.setItem('campfireMode', 'true');
+            } else {
+                campfireGlow.classList.remove('active');
+                localStorage.setItem('campfireMode', 'false');
+            }
+        });
+    }
+});
+

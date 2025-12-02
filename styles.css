@@ -1153,6 +1153,152 @@ body.fade-out {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   CAMPFIRE MODE TOGGLE
+   ═══════════════════════════════════════════════════════════ */
+
+.campfire-toggle-container {
+    position: fixed;
+    top: 1.5rem;
+    right: 2rem;
+    z-index: 101;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    background: rgba(26, 22, 18, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    border: 1px solid rgba(245, 235, 224, 0.1);
+}
+
+.campfire-label {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-cream-dim);
+    letter-spacing: 0.03em;
+    user-select: none;
+}
+
+/* iOS-style toggle switch */
+.campfire-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 26px;
+    margin: 0;
+}
+
+.campfire-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.campfire-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(120, 120, 128, 0.32);
+    transition: 0.3s;
+    border-radius: 26px;
+}
+
+.campfire-slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.campfire-switch input:checked + .campfire-slider {
+    background-color: #FF6B35;
+}
+
+.campfire-switch input:checked + .campfire-slider:before {
+    transform: translateX(18px);
+}
+
+/* Campfire glow effect */
+.campfire-glow {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50vh;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1s ease;
+    background: radial-gradient(
+        ellipse at 50% 100%,
+        rgba(255, 107, 53, 0.4) 0%,
+        rgba(255, 140, 66, 0.3) 20%,
+        rgba(255, 160, 80, 0.2) 35%,
+        rgba(255, 180, 100, 0.1) 50%,
+        transparent 70%
+    );
+}
+
+.campfire-glow.active {
+    opacity: 1;
+    animation: campfireFlicker 4s ease-in-out infinite;
+}
+
+@keyframes campfireFlicker {
+    0%, 100% {
+        transform: scale(1) translateY(0);
+        filter: brightness(1);
+    }
+    25% {
+        transform: scale(1.05) translateY(-5px);
+        filter: brightness(1.1);
+    }
+    50% {
+        transform: scale(0.98) translateY(3px);
+        filter: brightness(0.95);
+    }
+    75% {
+        transform: scale(1.03) translateY(-3px);
+        filter: brightness(1.05);
+    }
+}
+
+@media (max-width: 600px) {
+    .campfire-toggle-container {
+        top: 1rem;
+        right: 1rem;
+        padding: 0.4rem 0.75rem;
+    }
+    
+    .campfire-label {
+        font-size: 0.75rem;
+    }
+    
+    .campfire-switch {
+        width: 38px;
+        height: 22px;
+    }
+    
+    .campfire-slider:before {
+        height: 18px;
+        width: 18px;
+    }
+    
+    .campfire-switch input:checked + .campfire-slider:before {
+        transform: translateX(16px);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
    SNOWFALL
    ═══════════════════════════════════════════════════════════ */
 
