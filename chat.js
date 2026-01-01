@@ -15,21 +15,20 @@ const firebaseConfig = {
 
 // Initialize Firebase
 let db;
-try {
-    firebase.initializeApp(firebaseConfig);
-    db = firebase.database();
-} catch (e) {
-    console.log('Firebase not configured yet');
-}
-
-const chatMessages = document.getElementById('chatMessages');
-const chatForm = document.getElementById('chatForm');
-const chatName = document.getElementById('chatName');
-const chatMessage = document.getElementById('chatMessage');
-
-// Load saved name from localStorage
-if (localStorage.getItem('cabinChatName')) {
-    chatName.value = localStorage.getItem('cabinChatName');
+if (typeof firebase !== 'undefined') {
+    try {
+        firebase.initializeApp(firebaseConfig);
+        db = firebase.database();
+    } catch (e) {
+        // Firebase might already be initialized by another script, try to get database instance
+        try {
+            db = firebase.database();
+        } catch (err) {
+            console.log('Firebase initialization error:', err.message);
+        }
+    }
+} else {
+    console.log('Firebase library not loaded');
 }
 
 // Format timestamp
@@ -67,36 +66,53 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-// Listen for messages
-if (db) {
-    const messagesRef = db.ref('messages');
+// Initialize chat when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const chatMessages = document.getElementById('chatMessages');
+    const chatForm = document.getElementById('chatForm');
+    const chatName = document.getElementById('chatName');
+    const chatMessage = document.getElementById('chatMessage');
     
-    messagesRef.orderByChild('timestamp').limitToLast(50).on('value', (snapshot) => {
-        chatMessages.innerHTML = '';
+    // Safety check - elements must exist
+    if (!chatMessages || !chatForm || !chatName || !chatMessage) {
+        console.error('Chat elements not found');
+        return;
+    }
+    
+    // Load saved name from localStorage
+    if (localStorage.getItem('cabinChatName')) {
+        chatName.value = localStorage.getItem('cabinChatName');
+    }
+    
+    // Listen for messages
+    if (db) {
+        const messagesRef = db.ref('messages');
         
-        if (!snapshot.exists()) {
-            chatMessages.innerHTML = '<p class="chat-placeholder">No messages yet. Be the first!</p>';
-            return;
-        }
-        
-        const messages = [];
-        snapshot.forEach((child) => {
-            messages.push(child.val());
+        messagesRef.orderByChild('timestamp').limitToLast(50).on('value', (snapshot) => {
+            chatMessages.innerHTML = '';
+            
+            if (!snapshot.exists()) {
+                chatMessages.innerHTML = '<p class="chat-placeholder">No messages yet. Be the first!</p>';
+                return;
+            }
+            
+            const messages = [];
+            snapshot.forEach((child) => {
+                messages.push(child.val());
+            });
+            
+            messages.forEach((data) => {
+                chatMessages.appendChild(renderMessage(data));
+            });
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
         });
-        
-        messages.forEach((data) => {
-            chatMessages.appendChild(renderMessage(data));
-        });
-        
-        // Scroll to bottom
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    });
-} else {
-    chatMessages.innerHTML = '<p class="chat-placeholder">Chat not configured yet.<br>Add Firebase config to chat.js</p>';
-}
-
-// Send message
-if (chatForm) {
+    } else {
+        chatMessages.innerHTML = '<p class="chat-placeholder">Chat not configured yet.<br>Add Firebase config to chat.js</p>';
+    }
+    
+    // Send message
     chatForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
@@ -124,5 +140,5 @@ if (chatForm) {
         chatMessage.value = '';
         chatMessage.focus();
     });
-}
+});
 
