@@ -1561,11 +1561,11 @@ body.fade-out {
 
 .activity-note {
     font-family: var(--font-body);
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     color: var(--color-cream-dim);
     font-style: italic;
     margin-top: 0.5rem;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 /* Multi-link square (for hiking) */
