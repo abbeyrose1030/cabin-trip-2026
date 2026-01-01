@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THINGS TO DO — CABIN TRIP 2026</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-link">HOME</a>
+        <a href="info.html" class="nav-link">INFO</a>
+        <a href="funthings.html" class="nav-link">WEATHER</a>
+        <a href="thingstodo.html" class="nav-link active">THINGS TO DO</a>
+        <!-- <a href="guestlist.html" class="nav-link">GUEST LIST</a> -->
+    </nav>
+
+    <div class="campfire-toggle-container">
+        <span class="campfire-label">Campfire Mode</span>
+        <label class="campfire-switch">
+            <input type="checkbox" id="campfireToggle">
+            <span class="campfire-slider"></span>
+        </label>
+    </div>
+
+    <div class="campfire-glow" id="campfireGlow"></div>
+
+    <div class="raccoon" id="raccoon">
+        <img src="raccoon.png" alt="raccoon">
+    </div>
+
+    <main class="info-page">
+        <div class="background-pattern"></div>
+        
+        <div class="info-content">
+            <h1 class="info-title">Things to Do</h1>
+            
+            <div class="activities-grid">
+                <a href="https://www.dollywood.com/" target="_blank" rel="noopener noreferrer" class="activity-square activity-dollywood">
+                    <div class="activity-content">
+                        <h3 class="activity-title">Dollywood</h3>
+                    </div>
+                </a>
+                
+                <a href="https://booking.titanicattraction.com/pigeon-forge/buy-tickets?hsCtaAttrib=190047606357" target="_blank" rel="noopener noreferrer" class="activity-square activity-titanic">
+                    <div class="activity-content">
+                        <h3 class="activity-title">Titanic Museum</h3>
+                        <p class="activity-price">$46</p>
+                    </div>
+                </a>
+                
+                <div class="activity-square activity-square-multi activity-hiking">
+                    <div class="activity-content">
+                        <a href="https://share.google/UG4Kroa0AebRKm1kF" target="_blank" rel="noopener noreferrer" class="activity-main-link">
+                            <h3 class="activity-title">Hiking Trails</h3>
+                        </a>
+                        <div class="activity-sub-links">
+                            <a href="https://share.google/UG4Kroa0AebRKm1kF" target="_blank" rel="noopener noreferrer" class="activity-sub-link">Trail 1</a>
+                            <a href="https://maps.app.goo.gl/AdRiZ6p2od7iHBes9" target="_blank" rel="noopener noreferrer" class="activity-sub-link">Trail 2</a>
+                            <a href="https://maps.app.goo.gl/wvx7so8uoGkyPjUBA" target="_blank" rel="noopener noreferrer" class="activity-sub-link">Trail 3</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="https://www.gatlinburg.com/plan/guides-and-itineraries/walk-around-gatlinburg/" target="_blank" rel="noopener noreferrer" class="activity-square activity-downtown">
+                    <div class="activity-content">
+                        <h3 class="activity-title">Downtown Gatlinburg</h3>
+                    </div>
+                </a>
+                
+                <a href="https://tickets.obermountain.com/en/catalogue/category/the-gatlinburg-aerial-tram_31/" target="_blank" rel="noopener noreferrer" class="activity-square activity-aerial">
+                    <div class="activity-content">
+                        <h3 class="activity-title">Aerial Tram</h3>
+                        <p class="activity-price">$34</p>
+                    </div>
+                </a>
+                
+                <a href="https://greatsmokyartsandcrafts.com/" target="_blank" rel="noopener noreferrer" class="activity-square activity-arts">
+                    <div class="activity-content">
+                        <h3 class="activity-title">Arts and Crafts Community</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1415,4 +1415,206 @@ body.fade-out {
     background: var(--color-amber);
 }
 
+/* ═══════════════════════════════════════════════════════════
+   ACTIVITIES GRID
+   ═══════════════════════════════════════════════════════════ */
+
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.activity-square {
+    position: relative;
+    aspect-ratio: 1;
+    background: rgba(245, 235, 224, 0.03);
+    border: 1px solid rgba(245, 235, 224, 0.08);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.4s var(--ease-smooth);
+    overflow: hidden;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Background images with blur and transparency */
+.activity-square::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: blur(2px);
+    opacity: 0.65;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    transition: opacity 0.4s var(--ease-smooth), filter 0.4s var(--ease-smooth);
+}
+
+/* Dark overlay */
+.activity-square::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+    transition: background 0.4s var(--ease-smooth);
+}
+
+/* Specific background images */
+.activity-dollywood::before {
+    background-image: url('dollywood.png');
+}
+
+.activity-titanic::before {
+    background-image: url('titanic.png');
+}
+
+.activity-hiking::before {
+    background-image: url('hiking.png');
+}
+
+.activity-downtown::before {
+    background-image: url('downtown.png');
+}
+
+.activity-aerial::before {
+    background-image: url('aerial tramway.png');
+}
+
+.activity-arts::before {
+    background-image: url('arts and crafts.png');
+}
+
+/* Hover effects */
+.activity-square:hover::before {
+    opacity: 0.75;
+    filter: blur(1px);
+}
+
+.activity-square:hover::after {
+    background: linear-gradient(135deg, 
+        rgba(212, 165, 116, 0.15) 0%, 
+        rgba(166, 93, 63, 0.2) 50%, 
+        rgba(212, 165, 116, 0.15) 100%),
+        rgba(0, 0, 0, 0.3);
+}
+
+.activity-square:hover {
+    border-color: rgba(212, 165, 116, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(212, 165, 116, 0.2);
+}
+
+.activity-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.activity-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-cream);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.activity-price {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-amber);
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+/* Multi-link square (for hiking) */
+.activity-square-multi {
+    cursor: default;
+}
+
+.activity-square-multi:hover {
+    cursor: default;
+}
+
+.activity-main-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.activity-sub-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.activity-sub-link {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-cream-dim);
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(245, 235, 224, 0.05);
+    transition: all 0.3s var(--ease-smooth);
+    text-align: center;
+}
+
+.activity-sub-link:hover {
+    background: rgba(212, 165, 116, 0.15);
+    border-color: rgba(212, 165, 116, 0.3);
+    color: var(--color-amber);
+    transform: translateX(3px);
+}
+
+
+@media (max-width: 900px) {
+    .activities-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .activities-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .activity-square {
+        padding: 1.5rem;
+    }
+    
+    .activity-title {
+        font-size: 1.3rem;
+    }
+}
+
 
