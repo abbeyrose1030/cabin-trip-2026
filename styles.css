@@ -740,14 +740,35 @@ body.fade-out {
 
 @media (max-width: 600px) {
     .nav {
-        gap: 2rem;
-        padding: 1.5rem;
+        gap: 0.5rem;
+        padding: 1rem 0.25rem;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
     }
     
     .nav-link {
-        font-size: 0.75rem;
-        letter-spacing: 0.15em;
+        font-size: 0.6rem;
+        letter-spacing: 0.08em;
+        padding: 0.4rem 0.4rem;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
+}
+
+@media (max-width: 400px) {
+    .nav {
+        gap: 0.4rem;
+        padding: 0.75rem 0.25rem;
+    }
+    
+    .nav-link {
+        font-size: 0.55rem;
+        padding: 0.35rem 0.35rem;
+        letter-spacing: 0.05em;
+    }
+}
     
     .cabin-icon {
         width: 70px;
@@ -768,35 +789,7 @@ body.fade-out {
    ═══════════════════════════════════════════════════════════ */
 
 .raccoon {
-    position: fixed;
-    width: 80px;
-    height: auto;
-    z-index: 50;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.raccoon.active {
-    opacity: 1;
-}
-
-.raccoon img {
-    width: 100%;
-    height: auto;
-}
-
-.raccoon.running {
-    animation: waddle 0.15s ease-in-out infinite;
-}
-
-@keyframes waddle {
-    0%, 100% { transform: rotate(-3deg) translateY(0); }
-    50% { transform: rotate(3deg) translateY(-2px); }
-}
-
-.raccoon.flip {
-    transform: scaleX(-1);
+    display: none;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -902,20 +895,33 @@ body.fade-out {
 
 @media (max-width: 600px) {
     .countdown-overlay {
-        padding: 1.5rem 2rem;
-        max-width: 90vw;
+        padding: 1rem 1.5rem;
+        max-width: 95vw;
+    }
+    
+    .countdown-display {
+        gap: 0.25rem;
+        flex-wrap: nowrap;
+    }
+    
+    .countdown-unit {
+        flex-direction: row;
+        gap: 0.25rem;
+        align-items: baseline;
     }
     
     .countdown-value {
-        font-size: 2rem;
-    }
-    
-    .countdown-separator {
         font-size: 1.5rem;
     }
     
     .countdown-label {
-        font-size: 0.7rem;
+        font-size: 0.6rem;
+        margin-left: 0.1rem;
+    }
+    
+    .countdown-separator {
+        font-size: 1.2rem;
+        margin: 0 0.1rem;
     }
 }
 
@@ -1433,7 +1439,7 @@ body.fade-out {
     position: relative;
     aspect-ratio: 1;
     background: rgba(245, 235, 224, 0.03);
-    border: 1px solid rgba(245, 235, 224, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 12px;
     padding: 2rem;
     display: flex;
@@ -1550,6 +1556,15 @@ body.fade-out {
     color: var(--color-amber);
     font-weight: 500;
     margin-top: 0.5rem;
+}
+
+.activity-note {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    color: var(--color-cream-dim);
+    font-style: italic;
+    margin-top: 0.5rem;
+    opacity: 0.8;
 }
 
 /* Multi-link square (for hiking) */

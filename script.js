@@ -63,10 +63,30 @@ if ('scrollRestoration' in history) {
 
 const raccoon = document.getElementById('raccoon');
 
-if (raccoon) {
+// Raccoon temporarily disabled
+if (false && raccoon) {
     const margin = 20;
+    let animationFrameId = null;
+    let timeoutId = null;
+    let isAnimating = false;
     
     function scurryAround() {
+        // Prevent multiple animations
+        if (isAnimating) return;
+        
+        // Clear any existing timeouts
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+            timeoutId = null;
+        }
+        
+        // Cancel any existing animation
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+        }
+        
+        isAnimating = true;
         const vw = window.innerWidth;
         const vh = window.innerHeight;
         const raccoonW = 80;
@@ -78,15 +98,19 @@ if (raccoon) {
         
         if (edge === 0) {
             // Bottom: left to right
-            startX = -raccoonW; startY = vh - margin - raccoonH;
-            endX = vw + raccoonW; endY = vh - margin - raccoonH;
+            startX = -raccoonW;
+            startY = vh - margin - raccoonH;
+            endX = vw + raccoonW;
+            endY = vh - margin - raccoonH;
         } else {
             // Top: left to right
-            startX = -raccoonW; startY = margin;
-            endX = vw + raccoonW; endY = margin;
+            startX = -raccoonW;
+            startY = margin;
+            endX = vw + raccoonW;
+            endY = margin;
         }
         
-        // Set initial position
+        // Set initial position (don't touch transform - let CSS animation handle waddle)
         raccoon.style.left = startX + 'px';
         raccoon.style.top = startY + 'px';
         
@@ -98,38 +122,53 @@ if (raccoon) {
         const startTime = performance.now();
         
         function animate(currentTime) {
+            if (!isAnimating) return; // Safety check
+            
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
             
-            // Easing
-            const eased = progress;
+            // Linear progress for smooth horizontal movement
+            const currentX = startX + (endX - startX) * progress;
+            const currentY = startY + (endY - startY) * progress;
             
-            const currentX = startX + (endX - startX) * eased;
-            const currentY = startY + (endY - startY) * eased;
-            
+            // Only update left/top, let CSS transform handle the waddle
             raccoon.style.left = currentX + 'px';
             raccoon.style.top = currentY + 'px';
             
             if (progress < 1) {
-                requestAnimationFrame(animate);
+                animationFrameId = requestAnimationFrame(animate);
             } else {
+                // Animation complete
                 raccoon.classList.remove('active', 'running');
+                raccoon.style.left = '-200px';
+                raccoon.style.top = '-200px';
+                isAnimating = false;
+                animationFrameId = null;
                 // Schedule next appearance
                 scheduleNextScurry();
             }
         }
         
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(animate);
     }
     
     function scheduleNextScurry() {
         // Random interval between 15-45 seconds
         const delay = 15000 + Math.random() * 30000;
-        setTimeout(scurryAround, delay);
+        timeoutId = setTimeout(() => {
+            timeoutId = null;
+            scurryAround();
+        }, delay);
     }
     
-    // First appearance right away
-    scurryAround();
+    // Wait for page to be fully loaded before starting
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(scurryAround, 1000);
+        });
+    } else {
+        setTimeout(scurryAround, 1000);
+    }
 }
 
 /* ═══════════════════════════════════════════════════════════
