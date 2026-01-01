@@ -7,8 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const links = document.querySelectorAll('a[href]');
     
     links.forEach(link => {
-        // Only handle internal links
-        if (link.hostname === window.location.hostname) {
+        // Only handle internal links (including file:// protocol for local dev)
+        const isInternal = link.hostname === window.location.hostname || 
+                          (!link.hostname && !window.location.hostname && 
+                           link.protocol === 'file:' && window.location.protocol === 'file:');
+        if (isInternal) {
             link.addEventListener('click', (e) => {
                 const href = link.getAttribute('href');
                 

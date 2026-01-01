@@ -44,6 +44,15 @@ const defaultGuests = guestNames.map((name, i) => ({
     feeling: ''
 }));
 
+// Helper function to safely parse guest index from key
+function parseGuestIndex(key) {
+    if (!key || !key.startsWith('guest_')) {
+        return -1; // Invalid key format
+    }
+    const num = parseInt(key.replace('guest_', ''), 10);
+    return isNaN(num) ? -1 : num - 1;
+}
+
 // Initialize guest list
 function initializeGuestList() {
     if (!db) {
@@ -59,23 +68,27 @@ function initializeGuestList() {
             snapshot.forEach((child) => {
                 const guestData = child.val();
                 // Ensure name is set from our list
-                const index = parseInt(child.key.replace('guest_', '')) - 1;
+                const index = parseGuestIndex(child.key);
                 const guest = {
                     id: child.key,
-                    name: guestNames[index] || guestData.name || '',
-                    feeling: guestData.feeling || ''
+                    name: (index >= 0 && guestNames[index]) ? guestNames[index] : (guestData?.name || ''),
+                    feeling: guestData?.feeling || ''
                 };
                 guests.push(guest);
                 // Update name in Firebase if it's missing
-                if (!guestData.name && guestNames[index]) {
+                if (!guestData?.name && index >= 0 && guestNames[index]) {
                     guestsRef.child(child.key).update({ name: guestNames[index] });
                 }
             });
             // Sort by ID to maintain order
             guests.sort((a, b) => {
-                const aNum = parseInt(a.id.replace('guest_', ''));
-                const bNum = parseInt(b.id.replace('guest_', ''));
-                return aNum - bNum;
+                const aIndex = parseGuestIndex(a.id);
+                const bIndex = parseGuestIndex(b.id);
+                // Handle invalid indices - put them at the end
+                if (aIndex < 0 && bIndex < 0) return 0;
+                if (aIndex < 0) return 1;
+                if (bIndex < 0) return -1;
+                return aIndex - bIndex;
             });
             renderGuestList(guests);
         } else {
@@ -93,6 +106,11 @@ function initializeGuestList() {
 
 // Render the guest list
 function renderGuestList(guests) {
+    if (!guestList) {
+        console.error('Guest list element not found');
+        return;
+    }
+    
     guestList.innerHTML = '';
     
     guests.forEach((guest) => {
@@ -150,18 +168,22 @@ if (db) {
             const guests = [];
             snapshot.forEach((child) => {
                 const guestData = child.val();
-                const index = parseInt(child.key.replace('guest_', '')) - 1;
+                const index = parseGuestIndex(child.key);
                 const guest = {
                     id: child.key,
-                    name: guestNames[index] || guestData.name || '',
-                    feeling: guestData.feeling || ''
+                    name: (index >= 0 && guestNames[index]) ? guestNames[index] : (guestData?.name || ''),
+                    feeling: guestData?.feeling || ''
                 };
                 guests.push(guest);
             });
             guests.sort((a, b) => {
-                const aNum = parseInt(a.id.replace('guest_', ''));
-                const bNum = parseInt(b.id.replace('guest_', ''));
-                return aNum - bNum;
+                const aIndex = parseGuestIndex(a.id);
+                const bIndex = parseGuestIndex(b.id);
+                // Handle invalid indices - put them at the end
+                if (aIndex < 0 && bIndex < 0) return 0;
+                if (aIndex < 0) return 1;
+                if (bIndex < 0) return -1;
+                return aIndex - bIndex;
             });
             renderGuestList(guests);
         }
