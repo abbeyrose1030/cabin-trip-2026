@@ -1,35 +1,9 @@
 /* ═══════════════════════════════════════════════════════════
-   CABIN TRIP 2026 — Chat
+   CABIN TRIP 2026 — Chat (LocalStorage-based)
    ═══════════════════════════════════════════════════════════ */
 
-const firebaseConfig = {
-    apiKey: "AIzaSyD4npNgTmVh8TA6TdEbBQI8N6DC9EW4L9k",
-    authDomain: "cabintrip2026.firebaseapp.com",
-    databaseURL: "https://cabintrip2026-default-rtdb.firebaseio.com",
-    projectId: "cabintrip2026",
-    storageBucket: "cabintrip2026.firebasestorage.app",
-    messagingSenderId: "867346528708",
-    appId: "1:867346528708:web:f143bf898670bd0190cc91",
-    measurementId: "G-VY5R64JWLH"
-};
-
-// Initialize Firebase
-let db;
-if (typeof firebase !== 'undefined') {
-    try {
-        firebase.initializeApp(firebaseConfig);
-        db = firebase.database();
-    } catch (e) {
-        // Firebase might already be initialized by another script, try to get database instance
-        try {
-            db = firebase.database();
-        } catch (err) {
-            console.log('Firebase initialization error:', err.message);
-        }
-    }
-} else {
-    console.log('Firebase library not loaded');
-}
+const STORAGE_KEY = 'cabinTrip2026_chat';
+const MAX_MESSAGES = 100; // Keep last 100 messages
 
 // Format timestamp
 function formatTime(timestamp) {
@@ -43,6 +17,53 @@ function formatTime(timestamp) {
         return date.toLocaleDateString([], { month: 'short', day: 'numeric' }) + ' ' + 
                date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
     }
+}
+
+// Escape HTML to prevent XSS
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Get messages from localStorage
+function getMessages() {
+    try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+        console.error('Error reading messages:', e);
+        return [];
+    }
+}
+
+// Save messages to localStorage
+function saveMessages(messages) {
+    try {
+        // Keep only the last MAX_MESSAGES
+        const toSave = messages.slice(-MAX_MESSAGES);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
+    } catch (e) {
+        console.error('Error saving messages:', e);
+        // If storage is full, try to clear old messages
+        if (e.name === 'QuotaExceededError') {
+            const recentMessages = messages.slice(-50);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(recentMessages));
+        }
+    }
+}
+
+// Add a new message
+function addMessage(name, message) {
+    const messages = getMessages();
+    messages.push({
+        name: name,
+        message: message,
+        timestamp: Date.now(),
+        id: Date.now() + Math.random() // Simple unique ID
+    });
+    saveMessages(messages);
+    return messages;
 }
 
 // Render a message
@@ -59,11 +80,26 @@ function renderMessage(data) {
     return msg;
 }
 
-// Escape HTML to prevent XSS
-function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+// Render all messages
+function renderMessages() {
+    const chatMessages = document.getElementById('chatMessages');
+    if (!chatMessages) return;
+    
+    const messages = getMessages();
+    
+    chatMessages.innerHTML = '';
+    
+    if (messages.length === 0) {
+        chatMessages.innerHTML = '<p class="chat-placeholder">No messages yet. Be the first!</p>';
+        return;
+    }
+    
+    messages.forEach((data) => {
+        chatMessages.appendChild(renderMessage(data));
+    });
+    
+    // Scroll to bottom
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
 // Initialize chat when DOM is ready
@@ -84,42 +120,23 @@ document.addEventListener('DOMContentLoaded', () => {
         chatName.value = localStorage.getItem('cabinChatName');
     }
     
-    // Listen for messages
-    if (db) {
-        const messagesRef = db.ref('messages');
-        
-        messagesRef.orderByChild('timestamp').limitToLast(50).on('value', (snapshot) => {
-            chatMessages.innerHTML = '';
-            
-            if (!snapshot.exists()) {
-                chatMessages.innerHTML = '<p class="chat-placeholder">No messages yet. Be the first!</p>';
-                return;
-            }
-            
-            const messages = [];
-            snapshot.forEach((child) => {
-                messages.push(child.val());
-            });
-            
-            messages.forEach((data) => {
-                chatMessages.appendChild(renderMessage(data));
-            });
-            
-            // Scroll to bottom
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        });
-    } else {
-        chatMessages.innerHTML = '<p class="chat-placeholder">Chat not configured yet.<br>Add Firebase config to chat.js</p>';
-    }
+    // Load and render existing messages
+    renderMessages();
+    
+    // Auto-refresh messages every 2 seconds (in case multiple tabs/devices)
+    // Note: This only works if users are on the same device/browser
+    setInterval(renderMessages, 2000);
+    
+    // Listen for storage events (updates from other tabs)
+    window.addEventListener('storage', (e) => {
+        if (e.key === STORAGE_KEY) {
+            renderMessages();
+        }
+    });
     
     // Send message
     chatForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        
-        if (!db) {
-            alert('Chat not configured yet. Add Firebase config to chat.js');
-            return;
-        }
         
         const name = chatName.value.trim();
         const message = chatMessage.value.trim();
@@ -129,16 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Save name for next time
         localStorage.setItem('cabinChatName', name);
         
-        // Push message to Firebase
-        db.ref('messages').push({
-            name: name,
-            message: message,
-            timestamp: Date.now()
-        });
+        // Add message
+        addMessage(name, message);
+        
+        // Re-render messages
+        renderMessages();
         
         // Clear message input
         chatMessage.value = '';
         chatMessage.focus();
     });
 });
-
