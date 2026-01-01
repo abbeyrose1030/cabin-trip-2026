@@ -125,6 +125,7 @@ body {
     justify-content: center;
     padding: 2rem;
     position: relative;
+    overflow: hidden;
 }
 
 .content {
@@ -813,13 +814,44 @@ body.fade-out {
     letter-spacing: 0.15em;
 }
 
+/* Countdown overlay for homepage */
+.countdown-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background: rgba(26, 22, 18, 0.4);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    padding: 2rem 3rem;
+    border: 1px solid rgba(245, 235, 224, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    width: auto;
+    margin: 0;
+    opacity: 0;
+    animation: countdownFadeIn 1s var(--ease-smooth) 0.3s forwards;
+}
+
+@keyframes countdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateY(0);
+    }
+}
+
 .countdown-display {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 1.5rem;
     flex-wrap: wrap;
+    margin: 0;
+    width: 100%;
 }
 
 .countdown-unit {
@@ -869,6 +901,11 @@ body.fade-out {
 }
 
 @media (max-width: 600px) {
+    .countdown-overlay {
+        padding: 1.5rem 2rem;
+        max-width: 90vw;
+    }
+    
     .countdown-value {
         font-size: 2rem;
     }

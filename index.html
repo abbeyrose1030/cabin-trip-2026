@@ -13,7 +13,7 @@
     <nav class="nav">
         <a href="index.html" class="nav-link active">HOME</a>
         <a href="info.html" class="nav-link">INFO</a>
-        <a href="funthings.html" class="nav-link">FUN THINGS</a>
+        <a href="funthings.html" class="nav-link">WEATHER</a>
         <!-- <a href="guestlist.html" class="nav-link">GUEST LIST</a> -->
     </nav>
 
@@ -34,10 +34,35 @@
     <main class="home">
         <div class="background-pattern"></div>
         
+        <div class="countdown-overlay">
+            <div class="countdown-display" id="countdownDisplay">
+                <div class="countdown-unit">
+                    <span class="countdown-value" id="days">00</span>
+                    <span class="countdown-label">days</span>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-unit">
+                    <span class="countdown-value" id="hours">00</span>
+                    <span class="countdown-label">hours</span>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-unit">
+                    <span class="countdown-value" id="minutes">00</span>
+                    <span class="countdown-label">minutes</span>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-unit">
+                    <span class="countdown-value" id="seconds">00</span>
+                    <span class="countdown-label">seconds</span>
+                </div>
+            </div>
+        </div>
+        
         <img src="font2.png" alt="" class="bottom-image">
     </main>
 
     <script src="script.js"></script>
+    <script src="countdown.js"></script>
 </body>
 </html>
 

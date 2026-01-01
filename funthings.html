@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FUN THINGS — CABIN TRIP 2026</title>
+    <title>WEATHER — CABIN TRIP 2026</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
     <nav class="nav">
         <a href="index.html" class="nav-link">HOME</a>
         <a href="info.html" class="nav-link">INFO</a>
-        <a href="funthings.html" class="nav-link active">FUN THINGS</a>
+        <a href="funthings.html" class="nav-link active">WEATHER</a>
         <!-- <a href="guestlist.html" class="nav-link">GUEST LIST</a> -->
     </nav>
 
@@ -35,76 +35,12 @@
         <div class="background-pattern"></div>
         
         <div class="info-content">
-            <h1 class="info-title">Fun Things</h1>
+            <h1 class="info-title">Weather</h1>
             
-            <!-- Countdown Section -->
-            <section class="info-section countdown-section">
-                <h2 class="section-title countdown-title-main">
-                    COUNTDOWN TO CABIN TRIP
-                </h2>
-                <div class="countdown-display" id="countdownDisplay">
-                    <div class="countdown-unit">
-                        <span class="countdown-value" id="days">00</span>
-                        <span class="countdown-label">days</span>
-                    </div>
-                    <div class="countdown-separator">:</div>
-                    <div class="countdown-unit">
-                        <span class="countdown-value" id="hours">00</span>
-                        <span class="countdown-label">hours</span>
-                    </div>
-                    <div class="countdown-separator">:</div>
-                    <div class="countdown-unit">
-                        <span class="countdown-value" id="minutes">00</span>
-                        <span class="countdown-label">minutes</span>
-                    </div>
-                    <div class="countdown-separator">:</div>
-                    <div class="countdown-unit">
-                        <span class="countdown-value" id="seconds">00</span>
-                        <span class="countdown-label">seconds</span>
-                    </div>
-                </div>
-            </section>
-
             <!-- Weather Section -->
             <section class="info-section weather-section">
                 <div class="weather-widget" id="weatherWidget">
                     <p class="weather-loading">Loading weather forecast...</p>
-                </div>
-            </section>
-
-            <!-- Carpool Coordinator -->
-            <section class="info-section carpool-section">
-                <h2 class="section-title carpool-title">
-                    Carpool Coordinator
-                </h2>
-                <div class="carpool-placeholder">
-                    <svg class="car-graphic" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Car body -->
-                        <rect x="20" y="50" width="160" height="35" rx="8" fill="none" stroke="currentColor" stroke-width="3"/>
-                        
-                        <!-- Car roof -->
-                        <path d="M 50 50 L 60 30 L 140 30 L 150 50" fill="none" stroke="currentColor" stroke-width="3"/>
-                        
-                        <!-- Windows -->
-                        <line x1="60" y1="33" x2="60" y2="50" stroke="currentColor" stroke-width="3"/>
-                        <line x1="100" y1="30" x2="100" y2="50" stroke="currentColor" stroke-width="3"/>
-                        <line x1="140" y1="33" x2="140" y2="50" stroke="currentColor" stroke-width="3"/>
-                        
-                        <!-- Wheels -->
-                        <circle cx="55" cy="85" r="12" fill="none" stroke="currentColor" stroke-width="3"/>
-                        <circle cx="145" cy="85" r="12" fill="none" stroke="currentColor" stroke-width="3"/>
-                        
-                        <!-- Wheel details -->
-                        <circle cx="55" cy="85" r="5" fill="none" stroke="currentColor" stroke-width="2"/>
-                        <circle cx="145" cy="85" r="5" fill="none" stroke="currentColor" stroke-width="2"/>
-                        
-                        <!-- Headlight -->
-                        <circle cx="175" cy="65" r="3" fill="currentColor"/>
-                        
-                        <!-- Door handle -->
-                        <line x1="110" y1="60" x2="120" y2="60" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                    <p class="carpool-message">Feature will be added closer to the date</p>
                 </div>
             </section>
         </div>
