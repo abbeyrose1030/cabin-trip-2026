@@ -276,6 +276,18 @@ body {
     font-weight: 300;
 }
 
+.section-text a.address-link {
+    color: var(--color-amber);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212, 165, 116, 0.3);
+    transition: all 0.3s var(--ease-smooth);
+}
+
+.section-text a.address-link:hover {
+    color: var(--color-amber-glow);
+    border-bottom-color: var(--color-amber);
+}
+
 .section-text-highlight {
     font-size: 0.95rem;
     background: rgba(212, 165, 116, 0.15);
